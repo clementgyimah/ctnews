@@ -1,0 +1,51 @@
+{
+  "name": "Ctnews",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-firebase/admob": "^11.5.0",
+    "@react-native-firebase/app": "11.5.0",
+    "@react-native-firebase/messaging": "11.5.0",
+    "@react-native-picker/picker": "^1.16.0",
+    "@react-navigation/bottom-tabs": "^5.11.10",
+    "@react-navigation/material-top-tabs": "^5.3.15",
+    "@react-navigation/native": "^5.5.1",
+    "@react-navigation/stack": "^5.4.2",
+    "newsapi": "^2.4.0",
+    "querystring": "^0.2.0",
+    "react": "16.13.1",
+    "react-native": "0.62.2",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-paper": "^4.8.1",
+    "react-native-push-notification": "^7.3.1",
+    "react-native-reanimated": "^1.9.0",
+    "react-native-safe-area-context": "^3.0.2",
+    "react-native-screens": "^2.8.0",
+    "react-native-tab-view": "^2.16.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-webview": "^11.4.4",
+    "realm": "^10.4.1",
+    "rn-fetch-blob": "^0.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/runtime": "^7.10.2",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.2.0",
+    "jest": "^26.0.1",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.13.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
