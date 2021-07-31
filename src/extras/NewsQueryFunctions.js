@@ -82,7 +82,7 @@ export function QueryLocalNews(
             //alert user in case the news api returns an error
             //or when the query is taking too long
             setIsLoading(false);
-            return Alert.alert('Oops! \nPlease check your internet connection');
+            return Alert.alert('Oops! \nCheck your network');
           });
         setLargeNews(true);
       });
@@ -116,7 +116,7 @@ export function QueryLocalNews(
           //alert user in case the news api returns an error
           //or when the query is taking too long
           setIsLoading(false);
-          return Alert.alert('Oops! \nCheck your network connection');
+          return Alert.alert('Oops! \nCheck your network');
         });
       realm.close();
     }
@@ -168,7 +168,7 @@ export function QueryForeignNews(
             //alert user in case the news api returns an error
             //or when the query is taking too long
             setIsLoading(false);
-            return Alert.alert('Oops! \nPlease check your internet connection');
+            return Alert.alert('Oops! \nCheck your network');
           });
         setLargeNews(true);
       });
@@ -199,7 +199,7 @@ export function QueryForeignNews(
           //alert user in case the news api returns an error
           //or when the query is taking too long
           setIsLoading(false);
-          return Alert.alert('Oops! \nPlease check your internet connection');
+          return Alert.alert('Oops! \nCheck your network');
         });
       realm.close();
     }

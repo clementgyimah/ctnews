@@ -8,6 +8,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {appStyle} from './src/StylSheet';
+import {View} from 'react-native';
 
 import ForeignTechnology from './src/foreignNewsComponents/ForeignTechnology';
 import ForeignBusiness from './src/foreignNewsComponents/ForeignBusiness';
@@ -25,6 +26,7 @@ import LocalScience from './src/localNewsComponents/LocalScience';
 import LocalSports from './src/localNewsComponents/LocalSports';
 import NewsPage from './src/NewsBrowser';
 import Settings from './src/Settings';
+import Help from './src/Help';
 
 //create instance of each navigator
 const MainStack = createStackNavigator();
@@ -234,14 +236,24 @@ const App = () => {
             headerTitleStyle: appStyle.mainHeaderTitleStyle,
             headerStyle: appStyle.mainHeaderStyle,
             headerRight: () => (
-              <MaterialCommunityIcons
-                name="settings"
-                size={27}
-                color="white"
-                backgroundColor="#3773e1"
-                style={appStyle.settingsButtonStyle}
-                onPress={() => navigation.navigate('Settings')}
-              />
+              <View style={appStyle.headerRightButtonsView}>
+                <MaterialCommunityIcons
+                  name="settings"
+                  size={27}
+                  color="white"
+                  backgroundColor="#3773e1"
+                  style={appStyle.headerRightButtonsStyle}
+                  onPress={() => navigation.navigate('Settings')}
+                />
+                <MaterialCommunityIcons
+                  name="help-circle"
+                  size={27}
+                  color="white"
+                  backgroundColor="#3773e1"
+                  style={appStyle.headerRightButtonsStyle}
+                  onPress={() => navigation.navigate('Help')}
+                />
+              </View>
             ),
           })}
         />
@@ -279,6 +291,45 @@ const App = () => {
                 backgroundColor="#3773e1"
                 style={appStyle.settingsBackButtonStyle}
                 onPress={() => navigation.goBack()}
+              />
+            ),
+            headerRight: () => (
+              <MaterialCommunityIcons
+                name="help-circle"
+                size={27}
+                color="white"
+                backgroundColor="#3773e1"
+                style={appStyle.headerRightButtonsStyle}
+                onPress={() => navigation.navigate('Help')}
+              />
+            ),
+          })}
+        />
+        <MainStack.Screen
+          name="Help"
+          component={Help}
+          options={({navigation}) => ({
+            title: 'Help',
+            headerTitleStyle: appStyle.mainHeaderTitleStyle,
+            headerStyle: appStyle.mainHeaderStyle,
+            headerLeft: () => (
+              <MaterialCommunityIcons
+                name="close"
+                size={27}
+                color="white"
+                backgroundColor="#3773e1"
+                style={appStyle.settingsBackButtonStyle}
+                onPress={() => navigation.goBack()}
+              />
+            ),
+            headerRight: () => (
+              <MaterialCommunityIcons
+                name="settings"
+                size={27}
+                color="white"
+                backgroundColor="#3773e1"
+                style={appStyle.headerRightButtonsStyle}
+                onPress={() => navigation.navigate('Settings')}
               />
             ),
           })}
