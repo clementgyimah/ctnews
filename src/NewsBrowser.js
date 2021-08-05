@@ -1,31 +1,46 @@
 //import all necessary libraries and packages
-import React, {useEffect, useState /*useRef, useCallback*/} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import {WebView} from 'react-native-webview';
 import {newsBrowserStyle} from './StylSheet';
-import {ActivityIndicator, View /*BackHandler*/} from 'react-native';
-//import {useFocusEffect} from '@react-navigation/native';
+import {ActivityIndicator, View, BackHandler} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ShareNews from './extras/ShareNews';
 
 //main exported function
 function NewsPage({route, navigation}) {
   const [pageLoading, setPageLoading] = useState(false);
-  //const hardwareBackRef = useRef(null);
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () =>
-        pageLoading ? (
-          <View style={newsBrowserStyle.pageLoadingIndicatorView}>
-            <ActivityIndicator color="white" size="small" />
-          </View>
-        ) : null,
-    });
-  }, [navigation, pageLoading]);
+  const hardwareBackRef = useRef(null);
 
-  /*
+  navigation.setOptions({
+    headerRight: () => (
+      <View style={newsBrowserStyle.headerRightView}>
+        {pageLoading ? (
+          <View style={newsBrowserStyle.headerRightViewComponentsView}>
+            <ActivityIndicator color="white" size={25} />
+          </View>
+        ) : null}
+        <View style={newsBrowserStyle.headerRightViewComponentsView}>
+          <Icon
+            onPress={() =>
+              ShareNews({
+                newsLink: route.params.newsLink,
+                newsTitle: route.params.newsTitle,
+              })
+            }
+            name="share-variant"
+            size={25}
+            color="white"
+          />
+        </View>
+      </View>
+    ),
+  });
+
   useFocusEffect(
     useCallback(() => {
       const webViewGoBack = () => {
-        //hardwareBackRef.current.goBack();
-        console.log('Back pressed');
+        hardwareBackRef.current.goBack();
         return true;
       };
       BackHandler.addEventListener('hardwareBackPress', webViewGoBack);
@@ -33,15 +48,20 @@ function NewsPage({route, navigation}) {
         BackHandler.removeEventListener('hardwareBackPress', webViewGoBack);
     }, []),
   );
-  */
 
   return (
     <WebView
+      ref={hardwareBackRef}
       source={{uri: route.params.newsLink}}
       style={newsBrowserStyle.webViewStyle}
       onLoadStart={() => setPageLoading(true)}
       onLoadEnd={() => setPageLoading(false)}
       dataDetectorTypes="all"
+      /*
+      onNavigationStateChange={(navigationState) =>
+        console.log(navigationState)
+      }
+      */
     />
   );
 }

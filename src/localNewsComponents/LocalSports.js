@@ -17,7 +17,17 @@ export default function LocalSports({navigation}) {
         pageSize={20}
         type="local"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={[
+          'news',
+          'sports',
+          'chelsea',
+          'football',
+          'team',
+          'classes',
+          'rehab',
+        ]}
+      />
     </SafeAreaView>
   );
 }

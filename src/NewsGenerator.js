@@ -12,6 +12,7 @@ export default function ForeignNewsList1({
   language,
   pageSize,
   type,
+  openModal,
 }) {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -60,6 +61,7 @@ export default function ForeignNewsList1({
             setImageLoadingError={setImageLoadingError}
             imageLoading={imageLoading}
             setImageLoading={setImageLoading}
+            openModal={openModal}
           />
         ) : (
           <NewsItemsSmall
@@ -73,6 +75,7 @@ export default function ForeignNewsList1({
             setImageLoadingError={setImageLoadingError}
             imageLoading={imageLoading}
             setImageLoading={setImageLoading}
+            openModal={openModal}
           />
         )
       }

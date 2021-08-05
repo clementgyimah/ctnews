@@ -17,7 +17,17 @@ export default function LocalHealth({navigation}) {
         pageSize={20}
         type="local"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={[
+          'news',
+          'health',
+          'hosting',
+          'claim',
+          'trading',
+          'treatment',
+          'cord blood',
+        ]}
+      />
     </SafeAreaView>
   );
 }

@@ -28,7 +28,7 @@ export const newsItemsLargeStyle = StyleSheet.create({
     flex: 1,
   },
   imgStyle: {
-    borderRadius: 20,
+    borderRadius: 10,
     flex: 1,
     height: 220,
   },
@@ -47,11 +47,16 @@ export const newsItemsLargeStyle = StyleSheet.create({
     flexDirection: 'row',
   },
   sourceNameView: {
-    flex: 1,
+    flex: 3,
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
   },
   sourceDurationView: {
+    flex: 3,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+  },
+  extraOptionsView: {
     flex: 1,
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
@@ -59,20 +64,6 @@ export const newsItemsLargeStyle = StyleSheet.create({
   sourceTxt: {
     fontSize: 12,
     color: '#5f6368',
-  },
-  imageDownloadView: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  imageDownloadIconView: {
-    margin: 10,
-    backgroundColor: 'white',
-    borderRadius: 200,
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
@@ -151,11 +142,14 @@ export const newsBrowserStyle = StyleSheet.create({
   webViewStyle: {
     flex: 1,
   },
-  pageLoadingIndicatorView: {
+  headerRightView: {
+    flexDirection: 'row',
+  },
+  headerRightViewComponentsView: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 50,
     flex: 1,
+    marginRight: 15,
   },
   loadingErrorView: {
     flex: 1,
@@ -300,5 +294,33 @@ export const helpPageStyle = StyleSheet.create({
   },
   developerInfoSpecificText: {
     color: '#4895EF',
+  },
+});
+
+export const otherOptionModalStyle = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    flexDirection: 'column',
+  },
+  transparentModalView: {
+    flex: 2,
+  },
+  translucentView: {
+    flex: 1,
+    backgroundColor: 'white',
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+  },
+  eachContentView: {
+    flexDirection: 'row',
+    marginTop: 10,
+    marginLeft: 10,
+    alignItems: 'center',
+    padding: 10,
+  },
+  eachContentText: {
+    fontSize: 15,
+    marginLeft: 15,
   },
 });

@@ -11,5 +11,7 @@ import {name as appName} from './app.json';
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   console.log('Message handled in the background!', remoteMessage);
 });
-
+AppRegistry.registerHeadlessTask('NewsNotification', () =>
+  require('./src/extras/NewsNotification'),
+);
 AppRegistry.registerComponent(appName, () => App);

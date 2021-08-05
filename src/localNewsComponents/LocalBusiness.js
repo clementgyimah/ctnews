@@ -17,7 +17,9 @@ export default function LocalBusiness({navigation}) {
         pageSize={20}
         type="local"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={['news', 'business', 'insurance', 'loans', 'mortgage']}
+      />
     </SafeAreaView>
   );
 }

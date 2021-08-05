@@ -17,7 +17,9 @@ export default function ForeignEntertainment({navigation}) {
         pageSize={20}
         type="world"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={['news', 'entertainment', 'attorney', 'credit', 'lawyer']}
+      />
     </SafeAreaView>
   );
 }

@@ -17,7 +17,16 @@ export default function LocalScience({navigation}) {
         pageSize={20}
         type="local"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={[
+          'news',
+          'science',
+          'recovery',
+          'transfer',
+          'gas',
+          'electicity',
+        ]}
+      />
     </SafeAreaView>
   );
 }

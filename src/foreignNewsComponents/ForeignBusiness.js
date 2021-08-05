@@ -17,7 +17,9 @@ export default function ForeignBusiness({navigation}) {
         pageSize={20}
         type="world"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={['news', 'business', 'insurance', 'loans', 'mortgage']}
+      />
     </SafeAreaView>
   );
 }

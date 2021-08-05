@@ -17,7 +17,9 @@ export default function LocalEntertainment({navigation}) {
         pageSize={20}
         type="local"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={['news', 'entertainment', 'attorney', 'credit', 'lawyer']}
+      />
     </SafeAreaView>
   );
 }

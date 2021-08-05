@@ -2,7 +2,7 @@ import {PermissionsAndroid, Platform, Alert} from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 
 //expression for checking android permission before downloading news item image
-export const checkAndroidPermission = async (imageSrc) => {
+export default async function checkAndroidPermission(imageSrc) {
   if (Platform.OS === 'ios') {
     downloadNewsImage(imageSrc);
   } else {
@@ -27,7 +27,7 @@ export const checkAndroidPermission = async (imageSrc) => {
       console.warn(err);
     }
   }
-};
+}
 
 //expression for downloading news item image
 const downloadNewsImage = (imageSrc) => {

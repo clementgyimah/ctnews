@@ -35,7 +35,9 @@ export default function NewsItemsSmall({
     <TouchableOpacity
       activeOpacity={1}
       style={newsItemsSmallStyle.touch}
-      onPress={() => navigation.navigate('NewsPage', {newsLink: url})}>
+      onPress={() =>
+        navigation.navigate('NewsPage', {newsLink: url, newsTitle: title})
+      }>
       <View style={newsItemsSmallStyle.mainView}>
         <View style={newsItemsSmallStyle.imgView}>
           {imageLoading ? (

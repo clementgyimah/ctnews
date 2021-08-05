@@ -17,7 +17,17 @@ export default function ForeignHealth({navigation}) {
         pageSize={20}
         type="world"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={[
+          'news',
+          'health',
+          'hosting',
+          'claim',
+          'trading',
+          'treatment',
+          'cord blood',
+        ]}
+      />
     </SafeAreaView>
   );
 }

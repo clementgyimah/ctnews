@@ -17,7 +17,7 @@ export default function ForeignGeneral({navigation}) {
         pageSize={20}
         type="world"
       />
-      <AdsBrowser />
+      <AdsBrowser adType={['news', 'general', 'donate', 'degree']} />
     </SafeAreaView>
   );
 }

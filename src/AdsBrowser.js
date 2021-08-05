@@ -12,10 +12,10 @@ import {adViewStyle} from './StylSheet';
 const adUnitId = __DEV__
   ? TestIds.BANNER
   : Platform.OS === 'ios'
-  ? 'ca-app-pub-7838234933796537/7058734654'
-  : 'ca-app-pub-7838234933796537/4013768916';
+  ? 'ca-app-pub-6115251452818261/7111197782'
+  : 'ca-app-pub-6115251452818261/8162207967';
 
-export default function AdsBrowser({route}) {
+export default function AdsBrowser({adType}) {
   const [adLoaded, setAdLoaded] = useState(false);
   admob()
     .setRequestConfiguration({
@@ -55,14 +55,7 @@ export default function AdsBrowser({route}) {
         size={BannerAdSize.FULL_BANNER}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
-          keywords: [
-            'technology',
-            'health',
-            'science',
-            'sports',
-            'business',
-            'entertainment',
-          ],
+          keywords: adType,
         }}
         onAdFailedToLoad={(err) => adFailedToLoadFunc(err)}
         onAdLoaded={() => adLoadedFunc()}

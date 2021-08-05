@@ -17,7 +17,15 @@ export default function ForeignTechnology({navigation}) {
         pageSize={20}
         type="world"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={[
+          'news',
+          'technology',
+          'software',
+          'conference call',
+          'hardware',
+        ]}
+      />
     </SafeAreaView>
   );
 }

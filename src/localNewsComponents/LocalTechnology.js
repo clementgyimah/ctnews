@@ -17,7 +17,9 @@ export default function LocalTechnology({navigation}) {
         pageSize={20}
         type="local"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={['news', 'sports', 'football', 'team', 'classes', 'rehab']}
+      />
     </SafeAreaView>
   );
 }

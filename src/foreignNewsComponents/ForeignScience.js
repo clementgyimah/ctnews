@@ -17,7 +17,16 @@ export default function ForeignScience({navigation}) {
         pageSize={20}
         type="world"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={[
+          'news',
+          'science',
+          'recovery',
+          'transfer',
+          'gas',
+          'electicity',
+        ]}
+      />
     </SafeAreaView>
   );
 }

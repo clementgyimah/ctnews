@@ -17,7 +17,17 @@ export default function ForeignSports({navigation}) {
         pageSize={20}
         type="world"
       />
-      <AdsBrowser />
+      <AdsBrowser
+        adType={[
+          'news',
+          'sports',
+          'chelsea',
+          'football',
+          'team',
+          'classes',
+          'rehab',
+        ]}
+      />
     </SafeAreaView>
   );
 }

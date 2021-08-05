@@ -5,12 +5,12 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  ImageBackground,
+  Image,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {checkAndroidPermission} from '../extras/DownloadNewsImage';
 import {newsItemsLargeStyle} from '../StylSheet';
 import durationCalculator from '../extras/durationCalculator';
+import OtherOptionsHandler from '../extras/OtherOptionsHandler';
 
 //function to render each news item
 export default function NewsItemsLarge({
@@ -24,6 +24,7 @@ export default function NewsItemsLarge({
   //setImageLoadingError,
   imageLoading,
   setImageLoading,
+  openModal,
 }) {
   //setImageLoadingError(false);
 
@@ -31,11 +32,22 @@ export default function NewsItemsLarge({
   //to do time and date calculations for each news item
   const newsDuration = durationCalculator(publishedAt);
 
+  const openOtherOptionModal = async () => {
+    await OtherOptionsHandler({imageSrc, title, url})
+      .then(() => {
+        //console.log('other options updated');
+        openModal(true);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <TouchableOpacity
       activeOpacity={1}
       style={newsItemsLargeStyle.touch}
-      onPress={() => navigation.navigate('NewsPage', {newsLink: url})}>
+      onPress={() =>
+        navigation.navigate('NewsPage', {newsLink: url, newsTitle: title})
+      }>
       <View>
         <View style={newsItemsLargeStyle.imgView}>
           {imageLoading ? (
@@ -47,28 +59,11 @@ export default function NewsItemsLarge({
           ) : (
             <View />
           )}
-          <ImageBackground
+          <Image
             source={{uri: imageSrc}}
             style={newsItemsLargeStyle.imgStyle}
-            onLoad={() => setImageLoading(false)}>
-            {imageLoading ? (
-              <View />
-            ) : (
-              <View style={newsItemsLargeStyle.imageDownloadView}>
-                <TouchableOpacity
-                  activeOpacity={1}
-                  style={newsItemsLargeStyle.imageDownloadIconView}
-                  onPress={() => checkAndroidPermission(imageSrc)}>
-                  <MaterialCommunityIcons
-                    name="download"
-                    size={27}
-                    color="#2554C7"
-                    backgroundColor="white"
-                  />
-                </TouchableOpacity>
-              </View>
-            )}
-          </ImageBackground>
+            onLoad={() => setImageLoading(false)}
+          />
         </View>
         <View style={newsItemsLargeStyle.txtView}>
           <Text style={newsItemsLargeStyle.title}>{title}</Text>
@@ -78,6 +73,14 @@ export default function NewsItemsLarge({
             </View>
             <View style={newsItemsLargeStyle.sourceDurationView}>
               <Text style={newsItemsLargeStyle.sourceTxt}>{newsDuration}</Text>
+            </View>
+            <View style={newsItemsLargeStyle.extraOptionsView}>
+              <MaterialCommunityIcons
+                name="dots-vertical"
+                size={20}
+                color="#5f6368"
+                onPress={() => openOtherOptionModal()}
+              />
             </View>
           </View>
         </View>

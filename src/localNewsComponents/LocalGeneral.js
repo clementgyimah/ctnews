@@ -1,42 +1,20 @@
 //import all necessary libraries and packages
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView, BackHandler, Alert} from 'react-native';
 import NewsGenerator from '../NewsGenerator';
 import {newsContainer} from '../StylSheet';
 import {useFocusEffect} from '@react-navigation/native';
-import messaging from '@react-native-firebase/messaging';
 import AdsBrowser from '../AdsBrowser';
+import {checkNotification, checkDynamicLink} from '../extras/StartUpProcesses';
+import OtherOptionModal from '../OtherOptionsModal';
 
 //main exported function
 export default function LocalGeneral({navigation}) {
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
-    //notification handler when app is running in background
-    messaging().onNotificationOpenedApp((remoteMessage) => {
-      if (remoteMessage.data.url) {
-        console.log(
-          'App opened from background due to notification ' +
-            remoteMessage.data.url,
-        );
-        return navigation.navigate('NewsPage', {
-          newsLink: remoteMessage.data.url,
-        });
-      }
-    });
-    //notification handler when app is in quit state
-    messaging()
-      .getInitialNotification()
-      .then((remoteMessage) => {
-        if (remoteMessage) {
-          console.log(
-            'App opened from quit state due to notification',
-            remoteMessage.data.url,
-          );
-          return navigation.navigate('NewsPage', {
-            newsLink: remoteMessage.data.url,
-          });
-        }
-      });
-  });
+    checkNotification(navigation);
+    checkDynamicLink();
+  }, [navigation]);
 
   useFocusEffect(
     useCallback(() => {
@@ -63,14 +41,16 @@ export default function LocalGeneral({navigation}) {
   return (
     <SafeAreaView style={newsContainer.container}>
       {/**call ForeignNewsList1 function and give the appropriate parameters */}
+      <OtherOptionModal openModal={showModal} setOpenModal={setShowModal} />
       <NewsGenerator
         navigation={navigation}
         category="general"
         language="en"
         pageSize={20}
         type="local"
+        openModal={setShowModal}
       />
-      <AdsBrowser />
+      <AdsBrowser adType={['news', 'general', 'donate', 'degree']} />
     </SafeAreaView>
   );
 }
