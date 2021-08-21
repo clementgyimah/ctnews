@@ -7,26 +7,32 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {appStyle} from './src/StylSheet';
+import {appStyle} from './src/assets/styles/StylSheet';
 import {View} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import {
+  verifyDatabaseInitializations,
+  checkDynamicLink,
+} from './src/functions/StartUpProcesses';
 
-import ForeignTechnology from './src/foreignNewsComponents/ForeignTechnology';
-import ForeignBusiness from './src/foreignNewsComponents/ForeignBusiness';
-import ForeignEntertainment from './src/foreignNewsComponents/ForeignEntertainment';
-import ForeignGeneral from './src/foreignNewsComponents/ForeignGeneral';
-import ForeignHealth from './src/foreignNewsComponents/ForeignHealth';
-import ForeignScience from './src/foreignNewsComponents/ForeignScience';
-import ForeignSports from './src/foreignNewsComponents/ForeignSports';
-import LocalTechnology from './src/localNewsComponents/LocalTechnology';
-import LocalBusiness from './src/localNewsComponents/LocalBusiness';
-import LocalEntertainment from './src/localNewsComponents/LocalEntertainment';
-import LocalGeneral from './src/localNewsComponents/LocalGeneral';
-import LocalHealth from './src/localNewsComponents/LocalHealth';
-import LocalScience from './src/localNewsComponents/LocalScience';
-import LocalSports from './src/localNewsComponents/LocalSports';
-import NewsPage from './src/NewsBrowser';
-import Settings from './src/Settings';
-import Help from './src/Help';
+import ForeignTechnology from './src/components/foreignNews/ForeignTechnology';
+import ForeignBusiness from './src/components/foreignNews/ForeignBusiness';
+import ForeignEntertainment from './src/components/foreignNews/ForeignEntertainment';
+import ForeignGeneral from './src/components/foreignNews/ForeignGeneral';
+import ForeignHealth from './src/components/foreignNews/ForeignHealth';
+import ForeignScience from './src/components/foreignNews/ForeignScience';
+import ForeignSports from './src/components/foreignNews/ForeignSports';
+import LocalTechnology from './src/components/localNews/LocalTechnology';
+import LocalBusiness from './src/components/localNews/LocalBusiness';
+import LocalEntertainment from './src/components/localNews/LocalEntertainment';
+import LocalGeneral from './src/components/localNews/LocalGeneral';
+import LocalHealth from './src/components/localNews/LocalHealth';
+import LocalScience from './src/components/localNews/LocalScience';
+import LocalSports from './src/components/localNews/LocalSports';
+import NewsBrowser from './src/components/NewsBrowser';
+import ContactBrowser from './src/components/ContactBrowser';
+import Settings from './src/components/Settings';
+import Help from './src/components/Help';
 
 //create instance of each navigator
 const MainStack = createStackNavigator();
@@ -61,32 +67,6 @@ const bottomTabForeignOptions = {
   },
   tabBarLabel: 'World',
 };
-
-/*
-//function for top tabs
-const topTabsFunc = ({title}) => {
-  return {
-    title,
-    tabBarIcon: () => null,
-    tabBarLabel: ({focused}) => {
-      if (focused) {
-        return (
-          <View>
-            <Text style={appStyle.topTabActiveText}>{title}</Text>
-            <View style={appStyle.topTabActiveBorder} />
-          </View>
-        );
-      } else {
-        return (
-          <View style={appStyle.topTabInactiveBorder}>
-            <Text style={appStyle.topTabInactiveText}>{title}</Text>
-          </View>
-        );
-      }
-    },
-  };
-};
-*/
 
 //Local news navigation function
 const LocalFunc = () => {
@@ -225,6 +205,14 @@ const BottomTabFunc = () => {
 
 //Main function that returns a container for all navigators
 const App = () => {
+  verifyDatabaseInitializations()
+    .then(() => {
+      checkDynamicLink();
+      SplashScreen.hide();
+    })
+    .catch((err) =>
+      console.log('Start up database initializations error: ', err),
+    );
   return (
     <NavigationContainer>
       <MainStack.Navigator initialRouteName="BottomTab">
@@ -232,7 +220,7 @@ const App = () => {
           name="BottomTab"
           component={BottomTabFunc}
           options={({navigation}) => ({
-            title: 'Ctnews',
+            title: 'CTnews',
             headerTitleStyle: appStyle.mainHeaderTitleStyle,
             headerStyle: appStyle.mainHeaderStyle,
             headerRight: () => (
@@ -258,10 +246,29 @@ const App = () => {
           })}
         />
         <MainStack.Screen
-          name="NewsPage"
-          component={NewsPage}
+          name="NewsBrowser"
+          component={NewsBrowser}
           options={({navigation}) => ({
-            title: 'Ctnews',
+            title: 'CTnews',
+            headerTitleStyle: appStyle.mainHeaderTitleStyle,
+            headerStyle: appStyle.mainHeaderStyle,
+            headerLeft: () => (
+              <MaterialCommunityIcons
+                name="arrow-left"
+                size={27}
+                color="white"
+                backgroundColor="#3773e1"
+                style={appStyle.settingsBackButtonStyle}
+                onPress={() => navigation.goBack()}
+              />
+            ),
+          })}
+        />
+        <MainStack.Screen
+          name="ContactBrowser"
+          component={ContactBrowser}
+          options={({navigation}) => ({
+            title: 'Get in touch',
             headerTitleStyle: appStyle.mainHeaderTitleStyle,
             headerStyle: appStyle.mainHeaderStyle,
             headerLeft: () => (
