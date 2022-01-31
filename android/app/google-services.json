@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "159197497983",
+    "project_id": "ctnews-4d485",
+    "storage_bucket": "ctnews-4d485.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159197497983:android:6ee850ded5810908344d4a",
+        "android_client_info": {
+          "package_name": "com.clemotec.ctnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159197497983-lnaplf0j0b7ct1jgjue8ospg3mpa7lr2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clemotec.ctnews",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "159197497983-sivv2nhdg1v222d50q1koeh8qe02bka2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.clemotec.ctnews",
+            "certificate_hash": "b27fb9d01ff433693d67d2a8f6ea56e7cc0c4d52"
+          }
+        },
+        {
+          "client_id": "159197497983-k23s4sj35f9tsdrobq9psturst0sm80j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCewyjf4zntYIQ-LpL4eO6kbrFLdXfibzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159197497983-k23s4sj35f9tsdrobq9psturst0sm80j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
