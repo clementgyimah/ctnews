@@ -243,8 +243,11 @@ export const appStyle = StyleSheet.create({
     marginBottom: 3,
   },
   */
-  settingsButtonStyle: {
+  headerRightButtonsStyle: {
     marginRight: 10,
+  },
+  headerRightButtonsView: {
+    flexDirection: 'row',
   },
   settingsBackButtonStyle: {
     marginLeft: 10,
@@ -268,5 +271,34 @@ export const adViewStyle = StyleSheet.create({
   adLoadingFailed: {
     height: 0,
     width: 0,
+  },
+});
+
+export const helpPageStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  appIconView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 200,
+  },
+  appIconStyle: {
+    width: 150,
+    height: 150,
+  },
+  developerInfoView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  developerInfoText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  developerNameSpecificText: {
+    color: '#283618',
+  },
+  developerInfoSpecificText: {
+    color: '#4895EF',
   },
 });

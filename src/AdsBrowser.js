@@ -29,18 +29,13 @@ export default function AdsBrowser({route}) {
       // manner suitable for users under the age of consent.
       tagForUnderAgeOfConsent: true,
     })
-    .then(() => {
-      console.log('Ad request configured successfully');
-    })
+    .then(() => {})
     .catch((err) => {
       console.log('Ads could not be configured' + err);
     });
 
   //show Ads container if Ad was loaded successfully
-  const adLoadedFunc = () => {
-    console.log('Ad was successfully loaded');
-    return setAdLoaded(true);
-  };
+  const adLoadedFunc = () => setAdLoaded(true);
 
   //don't show the Ads container if Ad failed to load
   const adFailedToLoadFunc = (err) => {
@@ -71,7 +66,7 @@ export default function AdsBrowser({route}) {
         }}
         onAdFailedToLoad={(err) => adFailedToLoadFunc(err)}
         onAdLoaded={() => adLoadedFunc()}
-        onAdOpened={() => console.log('Ad was successfully opened')}
+        //onAdOpened={() => console.log('Ad was successfully opened')}
       />
     </View>
   );
