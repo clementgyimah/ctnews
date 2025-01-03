@@ -2,8 +2,17 @@
 import React, {useState, useRef, useCallback} from 'react';
 import {WebView} from 'react-native-webview';
 import {newsBrowserStyle} from '../assets/styles/StylSheet';
-import {ActivityIndicator, View, BackHandler} from 'react-native';
+import {BackHandler} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
+import {ContactBrowserHeaderRight} from './ContactBrowserHeaderRight';
+
+const headerRight = ({pageLoading, newsLink, newsTitle}) => (
+  <ContactBrowserHeaderRight
+    pageLoading={pageLoading}
+    newsLink={newsLink}
+    newsTitle={newsTitle}
+  />
+);
 
 //main exported function
 export default function ContactBrowser({route, navigation}) {
@@ -11,15 +20,12 @@ export default function ContactBrowser({route, navigation}) {
   const hardwareBackRef = useRef(null);
 
   navigation.setOptions({
-    headerRight: () => (
-      <View style={newsBrowserStyle.headerRightView}>
-        {pageLoading ? (
-          <View style={newsBrowserStyle.headerRightViewComponentsView}>
-            <ActivityIndicator color="white" size={25} />
-          </View>
-        ) : null}
-      </View>
-    ),
+    headerRight: () =>
+      headerRight({
+        pageLoading,
+        newsLink: route.params.newsLink,
+        newsTitle: route.params.newsTitle,
+      }),
   });
 
   useFocusEffect(

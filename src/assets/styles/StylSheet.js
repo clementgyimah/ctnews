@@ -213,7 +213,7 @@ export const appStyle = StyleSheet.create({
   },
   bottomTabLabelStyle: {
     fontSize: 13,
-    marginTop: 5,
+    // marginTop: 5,
   },
   specificNewsTopStyle: {
     height: 40,

@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import NewsGenerator from '../NewsGenerator';
 import {newsContainer} from '../../assets/styles/StylSheet';
-import AdsBrowser from '../AdsBrowser';
+// import AdsBrowser from '../AdsBrowser';
 import OtherOptionModal from '../OtherOptionsModal';
 
 //main exported function
@@ -18,10 +18,10 @@ export default function ForeignSports({navigation}) {
         category="sports"
         language="en"
         pageSize={20}
-        type="world"
+        local={true}
         openModal={setShowModal}
       />
-      <AdsBrowser
+      {/*<AdsBrowser
         adType={[
           'news',
           'sports',
@@ -31,7 +31,7 @@ export default function ForeignSports({navigation}) {
           'classes',
           'rehab',
         ]}
-      />
+      />*/}
     </SafeAreaView>
   );
 }

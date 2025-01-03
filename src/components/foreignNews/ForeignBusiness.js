@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import NewsGenerator from '../NewsGenerator';
 import {newsContainer} from '../../assets/styles/StylSheet';
-import AdsBrowser from '../AdsBrowser';
+// import AdsBrowser from '../AdsBrowser';
 import OtherOptionModal from '../OtherOptionsModal';
 
 //main exported function
@@ -18,12 +18,12 @@ export default function ForeignBusiness({navigation}) {
         category="business"
         language="en"
         pageSize={20}
-        type="world"
+        local={true}
         openModal={setShowModal}
       />
-      <AdsBrowser
+      {/*<AdsBrowser
         adType={['news', 'business', 'insurance', 'loans', 'mortgage']}
-      />
+      />*/}
     </SafeAreaView>
   );
 }

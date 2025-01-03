@@ -10,7 +10,8 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {newsItemsSmallStyle} from '../../assets/styles/StylSheet';
 import durationCalculator from '../../functions/DurationCalculator';
-import OtherOptionsHandler from '../../functions/OtherOptionsHandler';
+import {useDispatch} from 'react-redux';
+import {updateImage, updateShare} from '../../redux/features/settings/slice';
 
 //function to render each news item
 export default function NewsItemsSmall({
@@ -26,6 +27,7 @@ export default function NewsItemsSmall({
   setImageLoading,
   openModal,
 }) {
+  const dispatch = useDispatch();
   //setImageLoadingError(false);
 
   //call the 'durationCalculator' function
@@ -33,12 +35,9 @@ export default function NewsItemsSmall({
   const newsDuration = durationCalculator(publishedAt);
 
   const openOtherOptionModal = async () => {
-    await OtherOptionsHandler({imageSrc, title, url})
-      .then(() => {
-        //console.log('other options updated');
-        openModal(true);
-      })
-      .catch((err) => console.log(err));
+    dispatch(updateImage(imageSrc));
+    dispatch(updateShare({title, url}));
+    openModal(true);
   };
 
   return (
