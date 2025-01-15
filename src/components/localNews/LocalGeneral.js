@@ -1,8 +1,7 @@
 //import all necessary libraries and packages
 import React, {useCallback, useEffect, useState} from 'react';
-import {SafeAreaView, BackHandler, Alert} from 'react-native';
+import {BackHandler, Alert} from 'react-native';
 import NewsGenerator from '../NewsGenerator';
-import {newsContainer} from '../../assets/styles/StylSheet';
 import {useFocusEffect} from '@react-navigation/native';
 // import AdsBrowser from '../AdsBrowser';
 import {checkNotification} from '../../functions/StartUpProcesses';
@@ -41,7 +40,7 @@ export default function LocalGeneral({navigation}) {
   );
 
   return (
-    <SafeAreaView style={newsContainer.container}>
+    <>
       <StatusBarComponent />
       <OtherOptionModal openModal={showModal} setOpenModal={setShowModal} />
       <NewsGenerator
@@ -53,6 +52,6 @@ export default function LocalGeneral({navigation}) {
         openModal={setShowModal}
       />
       {/*<AdsBrowser adType={['news', 'general', 'donate', 'degree']} />*/}
-    </SafeAreaView>
+    </>
   );
 }
