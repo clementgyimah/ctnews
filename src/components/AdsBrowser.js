@@ -30,7 +30,7 @@ export default function AdsBrowser({adType}) {
       tagForUnderAgeOfConsent: true,
     })
     .then(() => {})
-    .catch((err) => {
+    .catch(err => {
       console.log('Ads could not be configured' + err);
     });
 
@@ -38,7 +38,7 @@ export default function AdsBrowser({adType}) {
   const adLoadedFunc = () => setAdLoaded(true);
 
   //don't show the Ads container if Ad failed to load
-  const adFailedToLoadFunc = (err) => {
+  const adFailedToLoadFunc = err => {
     console.log('Ad Loading error: ' + err);
     return setAdLoaded(false);
   };
@@ -57,7 +57,7 @@ export default function AdsBrowser({adType}) {
           requestNonPersonalizedAdsOnly: true,
           keywords: adType,
         }}
-        onAdFailedToLoad={(err) => adFailedToLoadFunc(err)}
+        onAdFailedToLoad={err => adFailedToLoadFunc(err)}
         onAdLoaded={() => adLoadedFunc()}
         //onAdOpened={() => console.log('Ad was successfully opened')}
       />

@@ -30,7 +30,7 @@ export default async function checkAndroidPermission(imageSrc) {
 }
 
 //expression for downloading news item image
-const downloadNewsImage = (imageSrc) => {
+const downloadNewsImage = imageSrc => {
   // Main function to download the image
 
   // To add the time suffix in filename
@@ -61,14 +61,14 @@ const downloadNewsImage = (imageSrc) => {
   };
   config(options)
     .fetch('GET', image_URL)
-    .then((res) => {
+    .then(res => {
       // Showing alert after successful downloading
       console.log('res -> ', JSON.stringify(res));
       Alert.alert('Image Downloaded Successfully.');
     });
 };
 
-const getExtention = (filename) => {
+const getExtention = filename => {
   // To get the file extension
   return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
 };

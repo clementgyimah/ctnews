@@ -1,34 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Modal, View, ScrollView, Text, TouchableOpacity} from 'react-native';
-import Realm from 'realm';
-import {shareSchema, downloadImageSchema} from '../extras/DatabaseSchemas';
 import {otherOptionModalStyle} from '../assets/styles/StylSheet';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CheckAndroidPermission from '../functions/DownloadNewsImage';
 import ShareNews from '../functions/ShareNews';
+import {useSelector} from 'react-redux';
 
 export default function OtherOptionsModal({...props}) {
-  const [newsTitle, setNewsTitle] = useState('');
-  const [newsLink, setNewsLink] = useState('');
-  const [newsImageLink, setNewsImageLink] = useState('');
-
-  useEffect(() => {
-    //re-read data only when modal re-opens not when it closes
-    if (props.openModal) {
-      Realm.open({
-        path: 'otherOptionsDB',
-        schema: [downloadImageSchema, shareSchema],
-      })
-        .then((realm) => {
-          const downloadImageData = realm.objects('DownloadImage');
-          setNewsImageLink(downloadImageData[0].imageLink);
-          const shareNewsData = realm.objects('Share');
-          setNewsTitle(shareNewsData[0].newsTitle);
-          setNewsLink(shareNewsData[0].newsLink);
-        })
-        .catch((err) => console.log('Other options data query error: ', err));
-    }
-  }, [props.openModal]);
+  const newsImageLink = useSelector(state => state.settings.image);
+  const newsTitle = useSelector(state => state.settings.share.title);
+  const newsLink = useSelector(state => state.settings.share.link);
 
   //close the other options modal
   const handleCloseModal = () => {
@@ -39,14 +20,14 @@ export default function OtherOptionsModal({...props}) {
   const handleShareNews = async () => {
     await ShareNews({newsLink, newsTitle})
       .then(() => handleCloseModal())
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   //take care of downloading image
   const handleDownloadNewsImage = async () => {
     await CheckAndroidPermission(newsImageLink)
       .then(() => handleCloseModal())
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   return (

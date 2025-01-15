@@ -1,10 +1,9 @@
 //import all necessary libraries and packages
 import React, {useCallback, useEffect, useState} from 'react';
-import {SafeAreaView, BackHandler, Alert} from 'react-native';
+import {BackHandler, Alert} from 'react-native';
 import NewsGenerator from '../NewsGenerator';
-import {newsContainer} from '../../assets/styles/StylSheet';
 import {useFocusEffect} from '@react-navigation/native';
-import AdsBrowser from '../AdsBrowser';
+// import AdsBrowser from '../AdsBrowser';
 import {checkNotification} from '../../functions/StartUpProcesses';
 import OtherOptionModal from '../OtherOptionsModal';
 import StatusBarComponent from '../StatusBarComponent';
@@ -12,6 +11,7 @@ import StatusBarComponent from '../StatusBarComponent';
 //main exported function
 export default function LocalGeneral({navigation}) {
   const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     checkNotification(navigation);
   }, [navigation]);
@@ -38,20 +38,20 @@ export default function LocalGeneral({navigation}) {
         BackHandler.removeEventListener('hardwareBackPress', webViewGoBack);
     }, []),
   );
+
   return (
-    <SafeAreaView style={newsContainer.container}>
+    <>
       <StatusBarComponent />
       <OtherOptionModal openModal={showModal} setOpenModal={setShowModal} />
-      {/**call NewsGenerator component and give the appropriate parameters */}
       <NewsGenerator
         navigation={navigation}
         category="general"
         language="en"
         pageSize={20}
-        type="local"
+        local={true}
         openModal={setShowModal}
       />
-      <AdsBrowser adType={['news', 'general', 'donate', 'degree']} />
-    </SafeAreaView>
+      {/*<AdsBrowser adType={['news', 'general', 'donate', 'degree']} />*/}
+    </>
   );
 }

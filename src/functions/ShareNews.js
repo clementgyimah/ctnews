@@ -18,8 +18,8 @@ export default async function ShareNews({...props}) {
       dialogTitle: 'SHARE',
     };
     Share.share(shareContent, shareOption)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   } else {
     Alert.alert("Can't share this screen");
   }
