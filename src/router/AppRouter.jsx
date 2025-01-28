@@ -9,7 +9,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {appStyle} from '../assets/styles/StylSheet';
 import SplashScreen from 'react-native-splash-screen';
-// import {checkDynamicLink} from '../functions/StartUpProcesses';
 import ForeignTechnology from '../components/foreignNews/ForeignTechnology';
 import ForeignBusiness from '../components/foreignNews/ForeignBusiness';
 import ForeignEntertainment from '../components/foreignNews/ForeignEntertainment';
