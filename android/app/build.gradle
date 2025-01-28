@@ -79,9 +79,9 @@ android {
     defaultConfig {
         applicationId "com.clemotec.ctnews"
         minSdkVersion rootProject.ext.minSdkVersion
-
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 3145733
+        versionName "2.0.0"
     }
     signingConfigs {
         debug {
