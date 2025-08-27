@@ -80,8 +80,8 @@ android {
         applicationId "com.clemotec.ctnews"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3145733
-        versionName "2.0.0"
+        versionCode 3145734
+        versionName "2.1.0"
     }
     signingConfigs {
         debug {
@@ -121,6 +121,12 @@ dependencies {
         implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
+    }
+}
+
+afterEvaluate {
+    tasks.named("generateReleaseLintVitalReportModel") {
+        dependsOn tasks.named("copyReactNativeVectorIconFonts")
     }
 }
 
