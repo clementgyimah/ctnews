@@ -80,7 +80,7 @@ android {
         applicationId "com.clemotec.ctnews"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3145734
+        versionCode 3145735
         versionName "2.1.0"
     }
     signingConfigs {
